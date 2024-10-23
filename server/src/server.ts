@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +14,16 @@ const io = new Server(server, {
 });
 
 app.use(cors());
+// Import path module
+
+
+// Serve static files from the React build folder
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
+// Serve the index.html file for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+});
 
 interface User {
   id: string;
@@ -71,7 +82,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
