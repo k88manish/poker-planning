@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "postinstall": "npm run install:server",
     "dev": "vite",
     "build:frontend": "tsc -b && vite build",
-    "postinstall": "npm run install:server",
+    "build:server": "cd server && npm run build",
+    "move:frontend": "rm -rf ./server/frontend && mv dist ./server/frontend",
     "install:server": "cd server && npm install",
-    "build": "npm run build:frontend && rm -rf ./server/frontend && mv dist ./server/frontend",
-    "run:build": "NODE_ENV=production && cd server && ts-node ./src/server.ts",
+    "build": "npm run build:frontend && npm run build:server && npm run move:frontend",
+    "run:build": "NODE_ENV=production && cd server && npm run start:prod",
     "lint": "eslint .",
     "preview": "vite preview"
   },
