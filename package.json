@@ -8,7 +8,7 @@
     "build:frontend": "tsc -b && vite build",
     "postinstall": "npm run install:server",
     "install:server": "cd server && npm install",
-    "build": "npm run build:frontend && mv dist ./server/frontend",
+    "build": "npm run build:frontend && rm -rf ./server/frontend && mv dist ./server/frontend",
     "run:build": "NODE_ENV=production && cd server && ts-node ./src/server.ts",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -37,5 +37,8 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
     "vite": "^5.4.8"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
