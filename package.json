@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build:frontend": "tsc -b && vite build",
-    "install": "npm run install:frontend && npm run install:server",
-    "install:frontend": "npm install",
+    "postinstall": "npm run install:server",
     "install:server": "cd server && npm install",
     "build": "npm run build:frontend && mv dist ./server/frontend",
     "run:build": "NODE_ENV=production && cd server && ts-node ./src/server.ts",
