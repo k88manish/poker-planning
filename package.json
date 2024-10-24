@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run install:server",
     "dev": "vite",
-    "build:frontend": "tsc -b && vite build",
+    "build:frontend": "tsc -b && vite build --mode production",
     "build:server": "cd server && npm run build",
     "move:frontend": "rm -rf ./server/frontend && mv dist ./server/frontend",
     "install:server": "cd server && npm install",

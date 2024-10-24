@@ -20,12 +20,14 @@ const Room: React.FC = () => {
   const [revealed, setRevealed] = useState<boolean>(false);
   const cards: Card[] = ['0', '1', '2', '3', '5', '8', '13', '21', '?'];
 
+  const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const userName = params.get('name') || '';
     setName(userName);
 
-    const newSocket = io('http://localhost:3001');
+    const newSocket = io(socketUrl);
     setSocket(newSocket);
 
     if (roomId) {
