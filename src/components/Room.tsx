@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import io, { Socket } from 'socket.io-client';
 
 type Card = '0' | '1' | '2' | '3' | '5' | '8' | '13' | '21' | '?';
@@ -19,13 +19,21 @@ const Room: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [revealed, setRevealed] = useState<boolean>(false);
   const cards: Card[] = ['0', '1', '2', '3', '5', '8', '13', '21', '?'];
+  const navigate = useNavigate();
 
   const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const userName = params.get('name') || '';
+    const userName = params.get('name') || localStorage.getItem('userName') || '';
+    
+    if (!userName) {
+      navigate(`/join/${roomId}`);
+      return;
+    }
+
     setName(userName);
+    localStorage.setItem('userName', userName);
 
     const newSocket = io(socketUrl);
     setSocket(newSocket);
@@ -45,7 +53,7 @@ const Room: React.FC = () => {
     return () => {
       newSocket.disconnect();
     };
-  }, [location, roomId]);
+  }, [location, roomId, navigate]);
 
   const selectCard = (card: Card) => {
     setSelectedCard(card);
