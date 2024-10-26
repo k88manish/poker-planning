@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import io, { Socket } from 'socket.io-client';
+import VoteChart from './VoteChart';
 
 type Card = '0' | '1' | '2' | '3' | '5' | '8' | '13' | '21' | '?';
 
@@ -104,8 +105,8 @@ const Room: React.FC = () => {
                 key={card}
                 onClick={() => selectCard(card)}
                 className={`p-4 text-xl font-bold rounded-md transition duration-300 ease-in-out ${selectedCard === card
-                    ? 'bg-gradient-to-r from-yellow-400 to-pink-500 text-white transform scale-105'
-                    : 'bg-white bg-opacity-20 hover:bg-opacity-30'
+                  ? 'bg-gradient-to-r from-yellow-400 to-pink-500 text-white transform scale-105'
+                  : 'bg-white bg-opacity-20 hover:bg-opacity-30'
                   }`}
               >
                 {card}
@@ -127,6 +128,13 @@ const Room: React.FC = () => {
             ))}
           </ul>
         </div>
+
+        {revealed && (
+          <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg shadow-lg p-6 mb-8">
+            <h3 className="text-2xl font-bold mb-4">Vote Distribution</h3>
+            <VoteChart users={users} />
+          </div>
+        )}
 
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <button
