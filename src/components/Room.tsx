@@ -81,7 +81,7 @@ const Room: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 text-white py-8">
+    <div className="min-h-screen text-white py-8">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-extrabold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500">
           Room: {roomId}

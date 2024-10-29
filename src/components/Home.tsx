@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 text-white">
+    <div className="flex flex-col items-center justify-center min-h-screen text-white">
       <div className="max-w-md w-full px-6 py-8 bg-white bg-opacity-10 backdrop-blur-md rounded-lg shadow-lg">
         <h1 className="text-5xl font-extrabold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500">
           Planning Poker
