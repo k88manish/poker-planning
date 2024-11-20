@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Room from './components/Room'
 import JoinRoom from './components/JoinRoom'
-import './App.css'
 import githubMark from './assets/github-mark.png'
+import ThemeToggle from './components/ThemeToggle'
+import './App.css'
 const App: React.FC = () => {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
+        <ThemeToggle />
         <header className="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-4">
           <div className="container mx-auto px-4 flex justify-between items-center">
             <h1 className="text-2xl font-bold">Planning Poker</h1>
@@ -27,7 +29,10 @@ const App: React.FC = () => {
             </a>
           </div>
         </header>
-        <main className="flex-grow bg-gradient-to-br from-purple-600 to-blue-500">
+        <main className="flex-grow transition-colors duration-300
+          bg-gradient-to-br from-purple-600 to-blue-500
+          dark:bg-gray-900 dark:bg-none"
+        >
           <div className="container mx-auto px-4 max-w-7xl ">
             <Routes>
               <Route path="/" element={<Home />} />
