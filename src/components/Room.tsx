@@ -52,6 +52,11 @@ const Room: React.FC = () => {
       setRevealed(true);
     });
 
+    newSocket.on('unreveal', () => {
+      setRevealed(false);
+      setSelectedCard(null);
+    });
+
     return () => {
       newSocket.disconnect();
     };

@@ -68,6 +68,7 @@ io.on('connection', (socket) => {
     const room = rooms[roomId];
     room.forEach(user => user.vote = null);
     io.to(roomId).emit('update-users', room);
+    io.to(roomId).emit('unreveal');
   });
 
   socket.on('disconnect', () => {
